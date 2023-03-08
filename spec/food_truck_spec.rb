@@ -17,4 +17,8 @@ RSpec.describe FoodTruck do
   it 'has an empty starting inventory' do
     expect(@food_truck.inventory).to eq({})
   end
+
+  it 'can stock items and check stock' do
+    expect(@food_truck.check_stock(@item1)).to eq(0)
+  end
 end
