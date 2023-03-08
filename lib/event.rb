@@ -25,4 +25,10 @@ class Event
       end
     end
   end
+
+  
+  # def overstocked_items
+  #   overstock = []
+
+  # end
 end
