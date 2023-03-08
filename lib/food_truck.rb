@@ -14,4 +14,12 @@ class FoodTruck
   def stock(item, amount)
     @inventory[item] += amount
   end
+
+  def potential_revenue
+    revenue = []
+    @inventory.each do |item, count|
+      revenue << item.price * count
+    end
+    revenue.sum
+  end
 end
