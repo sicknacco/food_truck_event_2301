@@ -123,7 +123,7 @@ RSpec.describe Event do
     expect(@event.total_inventory).to eq(expected)
   end
 
-  xit 'can determine if an item is overstocked' do
+  it 'can determine if an item is overstocked' do
     @event.add_food_truck(@food_truck1)
     @food_truck1.stock(@item1, 35)
     @food_truck1.stock(@item2, 7)
