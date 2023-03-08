@@ -16,4 +16,13 @@ class Event
       food_truck.name
     end
   end
+
+  def food_trucks_that_sell(item)
+    trucks = []
+    @food_trucks.select do |food_truck|
+      if food_truck.inventory.keys.include?(item)
+        trucks << item
+      end
+    end
+  end
 end
