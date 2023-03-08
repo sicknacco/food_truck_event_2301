@@ -53,8 +53,13 @@ class Event
     trucks_stock
   end
 
-  # def overstocked_items
-  #   overstock = []
-
-  # end
+  def overstocked_items
+    overstock = []
+    total_inventory.each do |item, product_hash|
+      if product_hash[:quantity] > 50 && product_hash[:food_trucks].length > 1
+        overstock << item
+      end
+    end
+    overstock
+  end
 end
