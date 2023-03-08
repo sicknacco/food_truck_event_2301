@@ -38,6 +38,21 @@ class Event
     items.sort.uniq
   end
 
+  def total_inventory
+    trucks_stock = {}
+    @food_trucks.each do |food_truck|
+      food_truck.inventory.each do |item, quantity|
+        if trucks_stock[item]
+          trucks_stock[item][:quantity] += quantity
+        else
+          trucks_stock[item] = {quantity: food_truck.inventory[item],
+            food_trucks: food_trucks_that_sell(item)}
+        end
+      end
+    end
+    trucks_stock
+  end
+
   # def overstocked_items
   #   overstock = []
 
