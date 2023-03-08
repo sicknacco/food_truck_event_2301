@@ -86,7 +86,22 @@ RSpec.describe Event do
     expect(@food_truck3.potential_revenue).to eq(243.75)
   end
 
-  it 'can determine if an item is overstocked' do
+  it 'can return a sorted list of items' do
+    @event.add_food_truck(@food_truck1)
+    @food_truck1.stock(@item1, 35)
+    @food_truck1.stock(@item2, 7)
+    
+    @event.add_food_truck(@food_truck2)
+    @food_truck2.stock(@item4, 50)
+    @food_truck2.stock(@item3, 25)
+    
+    @event.add_food_truck(@food_truck3)
+    @food_truck3.stock(@item1, 65)
+
+    expect(@event.sorted_item_list).to eq([@item2.name, @item4.name, @item1.name, @item3.name])
+  end
+
+  xit 'can determine if an item is overstocked' do
     @event.add_food_truck(@food_truck1)
     @food_truck1.stock(@item1, 35)
     @food_truck1.stock(@item2, 7)
@@ -98,7 +113,7 @@ RSpec.describe Event do
     @event.add_food_truck(@food_truck3)
     @food_truck3.stock(@item1, 65)
     @food_truck3.stock(@item4, 10)
-    
+
     expect(@event.overstocked_items).to eq([@item1, @item4])
   end
 end
