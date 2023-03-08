@@ -25,4 +25,20 @@ RSpec.describe Event do
     @event.add_truck(@food_truck1)
     expect(@event.food_trucks).to eq([@food_truck1])
   end
+  
+  it 'trucks can stock items' do
+    @event.add_truck(@food_truck1)
+    @food_truck1.stock(@item1, 35)
+    @food_truck1.stock(@item2, 7)
+    expect(@food_truck1.inventory).to eq({@item1 => 35, @item2 => 7})
+    
+    @event.add_truck(@food_truck2)
+    @food_truck2.stock(@item4, 50)
+    @food_truck2.stock(@item3, 25)
+    expect(@food_truck2.inventory).to eq({@item4 => 50, @item3 => 25})
+    
+    @event.add_truck(@food_truck3)
+    @food_truck3.stock(@item1, 65)
+    expect(@food_truck3.inventory).to eq({@item1 => 65})
+  end
 end
