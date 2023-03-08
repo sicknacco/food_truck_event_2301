@@ -11,6 +11,6 @@ RSpec.describe FoodTruck do
 
   it 'exists and has a name' do
     expect(@food_truck).to be_a(FoodTruck)
-    # expect(@food_truck.name).to eq("Rocky Mountain Pies")
+    expect(@food_truck.name).to eq("Rocky Mountain Pies")
   end
 end
