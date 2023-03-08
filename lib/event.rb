@@ -26,7 +26,18 @@ class Event
     end
   end
 
-  
+  def sorted_item_list
+    items = []
+    @food_trucks.each do |food_truck|
+      food_truck.inventory.each do |item, value|
+        if value >0
+          items << item.name
+        end
+      end
+    end
+    items.sort.uniq
+  end
+
   # def overstocked_items
   #   overstock = []
 
