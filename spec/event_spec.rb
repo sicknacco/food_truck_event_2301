@@ -101,6 +101,28 @@ RSpec.describe Event do
     expect(@event.sorted_item_list).to eq([@item2.name, @item4.name, @item1.name, @item3.name])
   end
 
+  it 'can return total inventories of all trucks in a hash' do
+    @event.add_food_truck(@food_truck1)
+    @food_truck1.stock(@item1, 35)
+    @food_truck1.stock(@item2, 7)
+    
+    @event.add_food_truck(@food_truck2)
+    @food_truck2.stock(@item4, 50)
+    @food_truck2.stock(@item3, 25)
+    
+    @event.add_food_truck(@food_truck3)
+    @food_truck3.stock(@item1, 65)
+
+    expected = {
+      @item1 => {quantity: 100, food_trucks: [@food_truck1, @food_truck3]},
+      @item2 => {quantity: 7, food_trucks: [@food_truck1]},
+      @item3 => {quantity: 25, food_trucks: [@food_truck2]},
+      @item4 => {quantity: 50, food_trucks: [@food_truck2]}
+    }
+
+    expect(@event.total_inventory).to eq(expected)
+  end
+
   xit 'can determine if an item is overstocked' do
     @event.add_food_truck(@food_truck1)
     @food_truck1.stock(@item1, 35)
